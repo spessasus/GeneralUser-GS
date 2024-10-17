@@ -1,10 +1,21 @@
 # GeneralUser GS Revision History
 
+## 2.0.1 (2024-10-15)
+
+* Removed the version number and space from the SoundFont filename so users can update the SoundFont without changing filename links that point to it.
+* **000:007 Clavinet**: Improved note volume consistency across the key range. It is now better balanced with the Roland SC-55.
+* Fixed **000:010 Music Box** volume envelope decay time; it was too short.
+* **000:048 Fast Strings**: The volume envelope duration increase at lower velocities has been capped to avoid quiet notes starting too slowly.
+* **000:049 Slow Strings**: The volume envelope duration decrease at higher velocities has been capped to avoid loud notes starting too quickly.
+* Fixed clicking loops in the synth strings and synth bell samples used in **000:050 Synth Strings 1**, **000:088 Fantasia**, and many other pad presets.
+* Re-programmed **000:098 Crystal** to more closely match the Roland Sound Canvas.
+* Updated the license text embedded within the SoundFont to match `LICENSE.txt`.
+
 ## 2.0.0 (2024-9-19)
 
 * Updated compatibility requirements (see `README.html` for more details).
 * Reprogrammed all of the presets that use single-cycle analog waveforms using better waveforms that no longer create aliasing.
-* Many changes were made to better emulate the behavior of the Roland Sound Canvass (SC-55 and SC-8820), including:
+* Many changes were made to better emulate the behavior of the Roland Sound Canvas (SC-55 and SC-8820), including:
   - Re-balanced the volume of all instruments.
   - Increased reverb (CC91) and chorus (CC93) send amount.
   - Reverb level and reverb send amount is greatly reduced on drum kit kick drums.
@@ -68,7 +79,7 @@ Known Issues:
 
 * The preset **008:014 Church Bells** will not sound correct in FluidSynth until version 2.4 (see [issue #1312](https://github.com/FluidSynth/fluidsynth/issues/1312)).
 
-## 1.5.2 (2022-5-9)
+## 1.5.2 (2022-5-9 unreleased beta)
 
 * **000:004 Tine Electric Piano**: Fixed buzzy loops and improved dynamics and tone.
 * **000:041 Viola**: Improved note attack and tone across dynamic range. Fixed bad loops on samples 54, 77 and 82.
@@ -76,7 +87,7 @@ Known Issues:
 * Further tweaks to the balance of the drums.
 * Further improvements to primary and secondary snares in the standard drum kit.
 
-## 1.5.1 (2020-11-20)
+## 1.5.1 (2020-11-20 unreleased beta)
 
 * All acoustic pianos and harp: improved stretch tuning and overall instrument intonation.
 * Improved sample programming on standard snares and brushed snares.
@@ -91,7 +102,7 @@ Known Issues:
 * All **acoustic guitar** presets: Improved decay envelope.
 * Various fixes and tweaks.
 
-## 1.5.0 (2020)
+## 1.5.0 (2020 unreleased beta)
 
 * New version numbering scheme. I have adapted the semantic “Major.Minor.Patch” version scheme going forward.
 * Major code cleanup, including :
