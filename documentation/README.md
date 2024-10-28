@@ -7,8 +7,45 @@ _Documentation: **revision 3** (10/15/2024)_
 Updates to this documentation will be published on [my GeneralUser GS web page](https://www.schristiancollins.com/generaluser) and viewable online at [GitHub](https://github.com/mrbumpy409/GeneralUser-GS/blob/main/documentation/README.md).
 
 ---
-
-[TOC]
+### Table of Contents
+<!-- TOC -->
+* [GeneralUser GS Documentation](#generaluser-gs-documentation)
+    * [Table of Contents](#table-of-contents)
+  * [1. About GeneralUser GS](#1-about-generaluser-gs)
+  * [2. Compatibility](#2-compatibility)
+    * [2.1. Operating Systems](#21-operating-systems)
+  * [3. Configuration and Usage](#3-configuration-and-usage)
+      * [3.0.1. BASSMIDI](#301-bassmidi)
+      * [3.0.2. FluidSynth](#302-fluidsynth)
+    * [3.1. DAW plugins (Composing or Live Musical Performance)](#31-daw-plugins-composing-or-live-musical-performance)
+      * [3.1.1. FluidSynth Plugin (GNU/Linux, macOS, Windows)](#311-fluidsynth-plugin-gnulinux-macos-windows)
+      * [3.1.2. BassMidi VSTi (Windows)](#312-bassmidi-vsti-windows)
+      * [3.1.3. juicysfplugin (macOS, Windows)](#313-juicysfplugin-macos-windows)
+      * [3.1.4. LMMS (GNU/Linux, macOS, Windows)](#314-lmms-gnulinux-macos-windows)
+      * [3.1.5. Others](#315-others)
+    * [3.2. Playing MIDI Files](#32-playing-midi-files)
+      * [3.2.1. FluidSynth (GNU/Linux, macOS, Windows)](#321-fluidsynth-gnulinux-macos-windows)
+      * [3.2.2. Falcosoft Soundfont Midi Player (Windows)](#322-falcosoft-soundfont-midi-player-windows)
+      * [3.2.3. KQ Sampei (iOS)](#323-kq-sampei-ios)
+      * [3.2.4. SpessaSynth (Web App)](#324-spessasynth-web-app)
+      * [3.2.5. Midi Clef Karaoke Player (Android)](#325-midi-clef-karaoke-player-android)
+      * [3.2.6. dmidiplayer (GNU/Linux, macOS, Windows)](#326-dmidiplayer-gnulinux-macos-windows)
+      * [3.2.7. Others](#327-others)
+    * [3.3. Retro PC Gaming](#33-retro-pc-gaming)
+      * [3.3.1 DOSBox Staging / DOSBox-X](#331-dosbox-staging--dosbox-x)
+      * [3.3.2 SCUMMVM](#332-scummvm)
+      * [3.3.3. Virtual MIDI Devices](#333-virtual-midi-devices)
+    * [3.4. All-Purpose MIDI Playback (virtual MIDI device + separate MIDI player)](#34-all-purpose-midi-playback-virtual-midi-device--separate-midi-player)
+      * [3.4.1. Qsynth (GNU/Linux)](#341-qsynth-gnulinux)
+      * [3.4.2. CoolSoft VirtualMidiSynth (Windows)](#342-coolsoft-virtualmidisynth-windows)
+      * [3.4.3. OmniMIDI (Windows)](#343-omnimidi-windows)
+  * [4. Preset List](#4-preset-list)
+    * [4.1. Instrument Presets](#41-instrument-presets)
+    * [4.2. Percussion Presets](#42-percussion-presets)
+  * [5. Support Files](#5-support-files)
+  * [6. Compressing GeneralUser GS for Web and Mobile Apps](#6-compressing-generaluser-gs-for-web-and-mobile-apps)
+  * [7. Website and Contact](#7-website-and-contact)
+<!-- TOC -->
 
 ---
 
@@ -25,19 +62,19 @@ GeneralUser GS is fully compatible with [FluidSynth](https://www.fluidsynth.org/
 Most other SoundFont synths will not properly render many of the presets and should be avoided. The following table shows the compatibility status of several popular SoundFont engines:
 
 | SoundFont Synth / Application                                                           | Compatibility | Notes                                                                                                         |
-| --------------------------------------------------------------------------------------- |:-------------:| ------------------------------------------------------------------------------------------------------------- |
-| Apple AUMIDISynth / DLSMusicDevice, et al. (most MIDI players on macOS/iOS)             | Awful         | The Apple SoundFont synths are an abomination, violating the spec in every way imaginable.                    |
+|-----------------------------------------------------------------------------------------|:-------------:|---------------------------------------------------------------------------------------------------------------|
+| Apple AUMIDISynth / DLSMusicDevice, et al. (most MIDI players on macOS/iOS)             |     Awful     | The Apple SoundFont synths are an abomination, violating the spec in every way imaginable.                    |
 | [BASSMIDI](https://www.un4seen.com/bass.html) (& OmniMIDI, et al.)                      | **Excellent** | BASSMIDI v2.4.14.28 or later *required*. Configuration may be necessary (see [section 3.0.1](#301-bassmidi)). |
-| [bismark bs-16i](https://www.bismark.jp/bs-16i) (Android, iOS)                          | Poor          | bs-16i cannot handle GeneralUser’s modulators, so many instruments sound incorrect.                           |
+| [bismark bs-16i](https://www.bismark.jp/bs-16i) (Android, iOS)                          |     Poor      | bs-16i cannot handle GeneralUser’s modulators, so many instruments sound incorrect.                           |
 | [FluidSynth](https://www.fluidsynth.org/) (& Qsynth, et al.)                            | **Excellent** | FluidSynth v2.3 or later recommended. See [section 3.0.2](#302-fluidsynth) for ideal settings.                |
 | [KQ Sampei](https://apps.apple.com/us/app/kq-sampei/id1626784865)                       | **Excellent** | Version 1.6 or later recommended. See [section 3.2.3](#323-kq-sampei-ios) for ideal settings.                 |
-| [MuseScore Studio 4](https://musescore.org/en)                                          | Poor          | The current version of MuseScore disables the lowpass filter, breaking many presets.                          |
-| [Sobanth VSTi](https://blog.rosseaux.net/page/e5ca75d98990e33b31dadc78a8df1333/Sobanth) | Good          | Uses the wrong mod envelope attack curve, so some presets will sound incorrect.                               |
-| Sound Blaster Audigy / X-Fi family of sound cards                                       | Okay          | Many instruments will sound too bright due to Creative Labs’ filter implementation.                           |
-| Sound Blaster Live! family of sound cards                                               | Poor          | The Live! only supports SoundFont v2.0, but v2.01 or later is required for GeneralUser GS.                    |
+| [MuseScore Studio 4](https://musescore.org/en)                                          |     Poor      | The current version of MuseScore disables the lowpass filter, breaking many presets.                          |
+| [Sobanth VSTi](https://blog.rosseaux.net/page/e5ca75d98990e33b31dadc78a8df1333/Sobanth) |     Good      | Uses the wrong mod envelope attack curve, so some presets will sound incorrect.                               |
+| Sound Blaster Audigy / X-Fi family of sound cards                                       |     Okay      | Many instruments will sound too bright due to Creative Labs’ filter implementation.                           |
+| Sound Blaster Live! family of sound cards                                               |     Poor      | The Live! only supports SoundFont v2.0, but v2.01 or later is required for GeneralUser GS.                    |
 | [SpessaSynth](https://spessasus.github.io/SpessaSynth/)                                 | **Excellent** | Version v3.20.43 or later recommended.                                                                        |
-| [SynthFont](http://www.synthfont.com/), et al.                                          | Poor          | Can’t handle GeneralUser’s modulators, making quite a mess of many presets.                                   |
-| [TinySoundFont](https://github.com/schellingb/TinySoundFont)                            | Poor          | Currently out of spec in crucial ways, no modulator support.                                                  |
+| [SynthFont](http://www.synthfont.com/), et al.                                          |     Poor      | Can’t handle GeneralUser’s modulators, making quite a mess of many presets.                                   |
+| [TinySoundFont](https://github.com/schellingb/TinySoundFont)                            |     Poor      | Currently out of spec in crucial ways, no modulator support.                                                  |
 
 If you would like to test a SoundFont player for proper [specification](https://github.com/davy7125/soundfont-standard-v3/blob/master/sfspec24.pdf) support, you can use my [SoundFont Spec Implementation Test](https://github.com/mrbumpy409/SoundFont-Spec-Test).
 
@@ -91,16 +128,16 @@ The default reverb and chorus settings in FluidSynth v2.3.x and earlier are not 
 
 Here is a table comparing the default reverb and chorus settings between FluidSynth 2.3.x, 2.4, and my recommended settings for use with GeneralUser GS:
 
-| Parameter                | v2.3.x | v2.4   | Recommended |
-| ------------------------ | ------ | ------ | ----------- |
-| synth.reverb.damp        | 0      | 0.3    | **0.3**     |
-| synth.reverb.level       | 0.9    | 0.7    | **0.7**     |
-| synth.reverb.room-size   | 0.2    | 0.5    | **0.5**     |
-| synth.reverb.width       | 0.5    | 0.8    | **0.8**     |
-| synth.chorus.depth       | 8      | 4.25   | **3.6**     |
-| synth.chorus.level       | 2      | 0.6    | **0.55**    |
-| synth.chorus.nr (voices) | 3      | 3      | **4**       |
-| synth.chorus.speed (Hz)  | 0.3    | 0.2    | **0.36**    |
+| Parameter                | v2.3.x | v2.4 | Recommended |
+|--------------------------|--------|------|-------------|
+| synth.reverb.damp        | 0      | 0.3  | **0.3**     |
+| synth.reverb.level       | 0.9    | 0.7  | **0.7**     |
+| synth.reverb.room-size   | 0.2    | 0.5  | **0.5**     |
+| synth.reverb.width       | 0.5    | 0.8  | **0.8**     |
+| synth.chorus.depth       | 8      | 4.25 | **3.6**     |
+| synth.chorus.level       | 2      | 0.6  | **0.55**    |
+| synth.chorus.nr (voices) | 3      | 3    | **4**       |
+| synth.chorus.speed (Hz)  | 0.3    | 0.2  | **0.36**    |
 
 Instructions for setting these values can be found in the individual app sections below.<div style="page-break-after: always"></div>
 
@@ -597,162 +634,162 @@ An instrument list file `GeneralUser GS.ins` is provided in Cakewalk format and 
 
 ### 4.1. Instrument Presets
 
-| *Bank:*| *PC:*   | *Preset:*                | *Bank:*| *PC:*   | *Preset:*                |
-|:------:|:-------:|:------------------------ |:------:|:-------:|:------------------------ |
-| **0**  | **0**   | **Grand Piano**          | **0**  | **6**   | **Harpsichord**          |
-| 11     |         | Piano & Str.-Fade        | 8      |         | Coupled Harpsichord      |
-| 12     |         | Bell Piano               | 11     |         | Harpsichord noVel        |
-| **0**  | **1**   | **Bright Grand Piano**   | 12     |         | Coupled Harpsi noVel     |
-| 11     |         | Piano & Str.-Sus         | **0**  | **7**   | **Clavinet**             |
-| **0**  | **2**   | **Electric Grand Piano** | **0**  | **8**   | **Celeste**              |
-| **0**  | **3**   | **Honky-Tonk Piano**     | 11     |         | Tinkling Bells           |
-| **0**  | **4**   | **Tine Electric Piano**  | **0**  | **9**   | **Glockenspiel**         |
-| 8      |         | Chorused Tine EP         | **0**  | **10**  | **Music Box**            |
-| 11     |         | Tine & FM EPs            | 12     |         | Christmas Bells          |
-| 12     |         | Bell Tine EP             | **0**  | **11**  | **Vibraphone**           |
-| **0**  | **5**   | **FM Electric Piano**    | 11     |         | Vibraphone No Trem.      |
-| 8      |         | Chorused FM EP           | **0**  | **12**  | **Marimba**              |
-| 11     |         | Piano & FM EP            | **0**  | **13**  | **Xylophone**            |
+| *Bank:* | *PC:* | *Preset:*                | *Bank:* | *PC:*  | *Preset:*            |
+|:-------:|:-----:|:-------------------------|:-------:|:------:|:---------------------|
+|  **0**  | **0** | **Grand Piano**          |  **0**  | **6**  | **Harpsichord**      |
+|   11    |       | Piano & Str.-Fade        |    8    |        | Coupled Harpsichord  |
+|   12    |       | Bell Piano               |   11    |        | Harpsichord noVel    |
+|  **0**  | **1** | **Bright Grand Piano**   |   12    |        | Coupled Harpsi noVel |
+|   11    |       | Piano & Str.-Sus         |  **0**  | **7**  | **Clavinet**         |
+|  **0**  | **2** | **Electric Grand Piano** |  **0**  | **8**  | **Celeste**          |
+|  **0**  | **3** | **Honky-Tonk Piano**     |   11    |        | Tinkling Bells       |
+|  **0**  | **4** | **Tine Electric Piano**  |  **0**  | **9**  | **Glockenspiel**     |
+|    8    |       | Chorused Tine EP         |  **0**  | **10** | **Music Box**        |
+|   11    |       | Tine & FM EPs            |   12    |        | Christmas Bells      |
+|   12    |       | Bell Tine EP             |  **0**  | **11** | **Vibraphone**       |
+|  **0**  | **5** | **FM Electric Piano**    |   11    |        | Vibraphone No Trem.  |
+|    8    |       | Chorused FM EP           |  **0**  | **12** | **Marimba**          |
+|   11    |       | Piano & FM EP            |  **0**  | **13** | **Xylophone**        |
 
-| *Bank:*| *PC:*   | *Preset:*                | *Bank:*| *PC:*   | *Preset:*                |
-|:------:|:-------:|:------------------------ |:------:|:-------:|:------------------------ |
-| **0**  | **14**  | **Tubular Bells**        | **0**  | **24**  | **Nylon Guitar**         |
-| 8      |         | Church Bells             | 8      |         | Ukulele                  |
-| 9      |         | Carillon                 | **0**  | **25**  | **Steel Guitar**         |
-| 11     |         | Bell Tower               | 8      |         | 12-String Guitar         |
-| **0**  | **15**  | **Dulcimer**             | 16     |         | Mandolin                 |
-| **0**  | **16**  | **Tonewheel Organ**      | **0**  | **26**  | **Jazz Guitar**          |
-| 8      |         | Detuned Tnwl. Organ      | 8      |         | Hawaiian Guitar          |
-| 11     |         | Tonewheel Org noVel      | **0**  | **27**  | **Clean Guitar**         |
-| 12     |         | Detun Tnwl Org noVel     | 8      |         | Chorused Clean Gt.       |
-| **0**  | **17**  | **Percussive Organ**     | 12     |         | Clean Guitar 2           |
-| 8      |         | Detuned Perc. Organ      | **0**  | **28**  | **Muted Guitar**         |
-| 11     |         | Percussive Org noVel     | 8      |         | Funk Guitar              |
-| 12     |         | Detun Perc Org noVel     | **0**  | **29**  | **Overdrive Guitar**     |
-| **0**  | **18**  | **Rock Organ**           | 11     |         | Wah Guitar (CC21)        |
-| 11     |         | Rock Organ noVel         | **0**  | **30**  | **Distortion Guitar**    |
-| **0**  | **19**  | **Pipe Organ**           | 8      |         | Feedback Guitar          |
-| 8      |         | Pipe Organ 2             | **0**  | **31**  | **Guitar Harmonics**     |
-| 11     |         | Pipe Organ noVel         | 8      |         | Guitar Feedback          |
-| 12     |         | Pipe Organ 2 noVel       | **0**  | **32**  | **Acoustic Bass**        |
-| **0**  | **20**  | **Reed Organ**           | **0**  | **33**  | **Finger Bass**          |
-| 11     |         | Reed Organ noVel         | **0**  | **34**  | **Pick Bass**            |
-| **0**  | **21**  | **Accordion**            | **0**  | **35**  | **Fretless Bass**        |
-| 8      |         | Italian Accordion        | **0**  | **36**  | **Slap Bass 1**          |
-| **0**  | **22**  | **Harmonica**            | **0**  | **37**  | **Slap Bass 2**          |
-| **0**  | **23**  | **Bandoneon**            |        |         |                          |
+| *Bank:* | *PC:*  | *Preset:*            | *Bank:* | *PC:*  | *Preset:*             |
+|:-------:|:------:|:---------------------|:-------:|:------:|:----------------------|
+|  **0**  | **14** | **Tubular Bells**    |  **0**  | **24** | **Nylon Guitar**      |
+|    8    |        | Church Bells         |    8    |        | Ukulele               |
+|    9    |        | Carillon             |  **0**  | **25** | **Steel Guitar**      |
+|   11    |        | Bell Tower           |    8    |        | 12-String Guitar      |
+|  **0**  | **15** | **Dulcimer**         |   16    |        | Mandolin              |
+|  **0**  | **16** | **Tonewheel Organ**  |  **0**  | **26** | **Jazz Guitar**       |
+|    8    |        | Detuned Tnwl. Organ  |    8    |        | Hawaiian Guitar       |
+|   11    |        | Tonewheel Org noVel  |  **0**  | **27** | **Clean Guitar**      |
+|   12    |        | Detun Tnwl Org noVel |    8    |        | Chorused Clean Gt.    |
+|  **0**  | **17** | **Percussive Organ** |   12    |        | Clean Guitar 2        |
+|    8    |        | Detuned Perc. Organ  |  **0**  | **28** | **Muted Guitar**      |
+|   11    |        | Percussive Org noVel |    8    |        | Funk Guitar           |
+|   12    |        | Detun Perc Org noVel |  **0**  | **29** | **Overdrive Guitar**  |
+|  **0**  | **18** | **Rock Organ**       |   11    |        | Wah Guitar (CC21)     |
+|   11    |        | Rock Organ noVel     |  **0**  | **30** | **Distortion Guitar** |
+|  **0**  | **19** | **Pipe Organ**       |    8    |        | Feedback Guitar       |
+|    8    |        | Pipe Organ 2         |  **0**  | **31** | **Guitar Harmonics**  |
+|   11    |        | Pipe Organ noVel     |    8    |        | Guitar Feedback       |
+|   12    |        | Pipe Organ 2 noVel   |  **0**  | **32** | **Acoustic Bass**     |
+|  **0**  | **20** | **Reed Organ**       |  **0**  | **33** | **Finger Bass**       |
+|   11    |        | Reed Organ noVel     |  **0**  | **34** | **Pick Bass**         |
+|  **0**  | **21** | **Accordion**        |  **0**  | **35** | **Fretless Bass**     |
+|    8    |        | Italian Accordion    |  **0**  | **36** | **Slap Bass 1**       |
+|  **0**  | **22** | **Harmonica**        |  **0**  | **37** | **Slap Bass 2**       |
+|  **0**  | **23** | **Bandoneon**        |         |        |                       |
 
-| *Bank:*| *PC:*   | *Preset:*                | *Bank:*| *PC:*   | *Preset:*                |
-|:------:|:-------:|:------------------------ |:------:|:-------:|:------------------------ |
-| **0**  | **38**  | **Synth Bass 1**         | **0**  | **49**  | **Slow Strings**         |
-| 1      |         | Synth Bass 101           | 1      |         | Slow Strings Mono        |
-| 8      |         | Acid Bass                | 11     |         | Velo Strings             |
-| 11     |         | Techno Bass              | 12     |         | Velo Strings Mono        |
-| 12     |         | Mean Saw Bass            | **0**  | **50**  | **Synth Strings 1**      |
-| **0**  | **39**  | **Synth Bass 2**         | 8      |         | Synth Strings 3          |
-| 8      |         | Beef FM Bass             | 11     |         | Synth Strings 4          |
-| 11     |         | Pulse Bass               | **0**  | **51**  | **Synth Strings 2**      |
-| **0**  | **40**  | **Violin**               | 11     |         | Synth Strings 5          |
-| **0**  | **41**  | **Viola**                | **0**  | **52**  | **Concert Choir**        |
-| **0**  | **42**  | **Cello**                | 1      |         | Concert Choir Mono       |
-| **0**  | **43**  | **Double Bass**          | **0**  | **53**  | **Voice Oohs**           |
-| **0**  | **44**  | **Tremolo Strings**      | **0**  | **54**  | **Synth Voice**          |
-| 1      |         | Tremolo Strings Mono     | **0**  | **55**  | **Orchestra Hit**        |
-| **0**  | **45**  | **Pizzicato Strings**    | **0**  | **56**  | **Trumpet**              |
-| **0**  | **46**  | **Orchestral Harp**      | 1      |         | Trumpet 2                |
-| **0**  | **47**  | **Timpani**              | **0**  | **57**  | **Trombone**             |
-| **0**  | **48**  | **Fast Strings**         | 1      |         | Trombone 2               |
-| 1      |         | Fast Strings Mono        | **0**  | **58**  | **Tuba**                 |
-| 8      |         | Orchestra Pad            | **0**  | **59**  | **Muted Trumpet**        |
-| 12     |         | Full Orchestra           | **0**  | **60**  | **French Horns**         |
-| 13     |         | Woodwind Choir           | 1      |         | Solo French Horn         |
+| *Bank:* | *PC:*  | *Preset:*             | *Bank:* | *PC:*  | *Preset:*           |
+|:-------:|:------:|:----------------------|:-------:|:------:|:--------------------|
+|  **0**  | **38** | **Synth Bass 1**      |  **0**  | **49** | **Slow Strings**    |
+|    1    |        | Synth Bass 101        |    1    |        | Slow Strings Mono   |
+|    8    |        | Acid Bass             |   11    |        | Velo Strings        |
+|   11    |        | Techno Bass           |   12    |        | Velo Strings Mono   |
+|   12    |        | Mean Saw Bass         |  **0**  | **50** | **Synth Strings 1** |
+|  **0**  | **39** | **Synth Bass 2**      |    8    |        | Synth Strings 3     |
+|    8    |        | Beef FM Bass          |   11    |        | Synth Strings 4     |
+|   11    |        | Pulse Bass            |  **0**  | **51** | **Synth Strings 2** |
+|  **0**  | **40** | **Violin**            |   11    |        | Synth Strings 5     |
+|  **0**  | **41** | **Viola**             |  **0**  | **52** | **Concert Choir**   |
+|  **0**  | **42** | **Cello**             |    1    |        | Concert Choir Mono  |
+|  **0**  | **43** | **Double Bass**       |  **0**  | **53** | **Voice Oohs**      |
+|  **0**  | **44** | **Tremolo Strings**   |  **0**  | **54** | **Synth Voice**     |
+|    1    |        | Tremolo Strings Mono  |  **0**  | **55** | **Orchestra Hit**   |
+|  **0**  | **45** | **Pizzicato Strings** |  **0**  | **56** | **Trumpet**         |
+|  **0**  | **46** | **Orchestral Harp**   |    1    |        | Trumpet 2           |
+|  **0**  | **47** | **Timpani**           |  **0**  | **57** | **Trombone**        |
+|  **0**  | **48** | **Fast Strings**      |    1    |        | Trombone 2          |
+|    1    |        | Fast Strings Mono     |  **0**  | **58** | **Tuba**            |
+|    8    |        | Orchestra Pad         |  **0**  | **59** | **Muted Trumpet**   |
+|   12    |        | Full Orchestra        |  **0**  | **60** | **French Horns**    |
+|   13    |        | Woodwind Choir        |    1    |        | Solo French Horn    |
 
-| *Bank:*| *PC:*   | *Preset:*                | *Bank:*| *PC:*   | *Preset:*                |
-|:------:|:-------:|:------------------------ |:------:|:-------:|:------------------------ |
-| **0**  | **61**  | **Brass Section**        | **0**  | **78**  | **Whistle**              |
-| 1      |         | Brass Section Mono       | 11     |         | Whistlin'                |
-| 8      |         | Brass Section 2          | **0**  | **79**  | **Ocarina**              |
-| 11     |         | Brass Section 3          | **0**  | **80**  | **Square Lead**          |
-| **0**  | **62**  | **Synth Brass 1**        | 1      |         | Square Wave              |
-| 8      |         | Synth Brass 3            | 8      |         | Sine Wave                |
-| **0**  | **63**  | **Synth Brass 2**        | 12     |         | Square Lead 2            |
-| 8      |         | Synth Brass 4            | 13     |         | Square Lead 3            |
-| **0**  | **64**  | **Soprano Sax**          | **0**  | **81**  | **Saw Lead**             |
-| **0**  | **65**  | **Alto Sax**             | 1      |         | Saw Wave                 |
-| **0**  | **66**  | **Tenor Sax**            | 8      |         | Doctor Solo              |
-| **0**  | **67**  | **Baritone Sax**         | 11     |         | Sawtooth Stab            |
-| **0**  | **68**  | **Oboe**                 | 12     |         | Saw Lead 2               |
-| **0**  | **69**  | **English Horn**         | 13     |         | Saw Lead 3               |
-| **0**  | **70**  | **Bassoon**              | **0**  | **82**  | **Synth Calliope**       |
-| **0**  | **71**  | **Clarinet**             | **0**  | **83**  | **Chiffer Lead**         |
-| **0**  | **72**  | **Piccolo**              | **0**  | **84**  | **Charang**              |
-| **0**  | **73**  | **Flute**                | **0**  | **85**  | **Solo Vox**             |
-| **0**  | **74**  | **Recorder**             | **0**  | **86**  | **5th Saw Wave**         |
-| **0**  | **75**  | **Pan Flute**            | **0**  | **87**  | **Bass & Lead**          |
-| 24     |         | Tin Whistle              | **0**  | **88**  | **Fantasia**             |
-| 25     |         | Tin Whistle Nm           | 11     |         | Harpsi Pad               |
-| 26     |         | Tin Whistle Or           | 12     |         | Fantasia 2               |
-| **0**  | **76**  | **Bottle Blow**          | 13     |         | Night Vision             |
-| **0**  | **77**  | **Shakuhachi**           |        |         |                          |
+| *Bank:* | *PC:*  | *Preset:*          | *Bank:* | *PC:*  | *Preset:*          |
+|:-------:|:------:|:-------------------|:-------:|:------:|:-------------------|
+|  **0**  | **61** | **Brass Section**  |  **0**  | **78** | **Whistle**        |
+|    1    |        | Brass Section Mono |   11    |        | Whistlin'          |
+|    8    |        | Brass Section 2    |  **0**  | **79** | **Ocarina**        |
+|   11    |        | Brass Section 3    |  **0**  | **80** | **Square Lead**    |
+|  **0**  | **62** | **Synth Brass 1**  |    1    |        | Square Wave        |
+|    8    |        | Synth Brass 3      |    8    |        | Sine Wave          |
+|  **0**  | **63** | **Synth Brass 2**  |   12    |        | Square Lead 2      |
+|    8    |        | Synth Brass 4      |   13    |        | Square Lead 3      |
+|  **0**  | **64** | **Soprano Sax**    |  **0**  | **81** | **Saw Lead**       |
+|  **0**  | **65** | **Alto Sax**       |    1    |        | Saw Wave           |
+|  **0**  | **66** | **Tenor Sax**      |    8    |        | Doctor Solo        |
+|  **0**  | **67** | **Baritone Sax**   |   11    |        | Sawtooth Stab      |
+|  **0**  | **68** | **Oboe**           |   12    |        | Saw Lead 2         |
+|  **0**  | **69** | **English Horn**   |   13    |        | Saw Lead 3         |
+|  **0**  | **70** | **Bassoon**        |  **0**  | **82** | **Synth Calliope** |
+|  **0**  | **71** | **Clarinet**       |  **0**  | **83** | **Chiffer Lead**   |
+|  **0**  | **72** | **Piccolo**        |  **0**  | **84** | **Charang**        |
+|  **0**  | **73** | **Flute**          |  **0**  | **85** | **Solo Vox**       |
+|  **0**  | **74** | **Recorder**       |  **0**  | **86** | **5th Saw Wave**   |
+|  **0**  | **75** | **Pan Flute**      |  **0**  | **87** | **Bass & Lead**    |
+|   24    |        | Tin Whistle        |  **0**  | **88** | **Fantasia**       |
+|   25    |        | Tin Whistle Nm     |   11    |        | Harpsi Pad         |
+|   26    |        | Tin Whistle Or     |   12    |        | Fantasia 2         |
+|  **0**  | **76** | **Bottle Blow**    |   13    |        | Night Vision       |
+|  **0**  | **77** | **Shakuhachi**     |         |        |                    |
 
-| *Bank:*| *PC:*   | *Preset:*                | *Bank:*| *PC:*   | *Preset:*                |
-|:------:|:-------:|:------------------------ |:------:|:-------:|:------------------------ |
-| **0**  | **89**  | **Warm Pad**             | **0**  | **106** | **Shamisen**             |
-| 11     |         | Solar Wind               | **0**  | **107** | **Koto**                 |
-| 12     |         | Solar Wind 2             | 8      |         | Taisho Koto              |
-| **0**  | **90**  | **Polysynth**            | **0**  | **108** | **Kalimba**              |
-| **0**  | **91**  | **Space Voice**          | **0**  | **109** | **Bagpipes**             |
-| **0**  | **92**  | **Bowed Glass**          | **0**  | **110** | **Fiddle**               |
-| **0**  | **93**  | **Metal Pad**            | **0**  | **111** | **Shenai**               |
-| **0**  | **94**  | **Halo Pad**             | **0**  | **112** | **Tinker Bell**          |
-| **0**  | **95**  | **Sweep Pad**            | **0**  | **113** | **Agogo**                |
-| **0**  | **96**  | **Ice Rain**             | **0**  | **114** | **Steel Drums**          |
-| 11     |         | Mystery Pad              | **0**  | **115** | **Wood Block**           |
-| **0**  | **97**  | **Soundtrack**           | 8      |         | Castanets                |
-| **0**  | **98**  | **Crystal**              | **0**  | **116** | **Taiko Drum**           |
-| 1      |         | Synth Mallet             | 8      |         | Concert Bass Drum        |
-| 11     |         | Synth Chime              | **0**  | **117** | **Melodic Tom**          |
-| **0**  | **99**  | **Atmosphere**           | 8      |         | Melodic Tom 2            |
-| **0**  | **100** | **Brightness**           | **0**  | **118** | **Synth Drum**           |
-| 11     |         | Bright Saw Stack         | 8      |         | 808 Tom                  |
-| **0**  | **101** | **Goblin**               | **0**  | **119** | **Reverse Cymbal**       |
-| **0**  | **102** | **Echo Drops**           | 11     |         | Cymbal Crash             |
-| 2      |         | Echo Pan                 | 12     |         | Tambourine               |
-| **0**  | **103** | **Star Theme**           | **0**  | **120** | **Fret Noise**           |
-| **0**  | **104** | **Sitar**                | 1      |         | Cut Noise                |
-| **0**  | **105** | **Banjo**                | 2      |         | String Slap              |
+| *Bank:* |  *PC:*  | *Preset:*        | *Bank:* |  *PC:*  | *Preset:*          |
+|:-------:|:-------:|:-----------------|:-------:|:-------:|:-------------------|
+|  **0**  | **89**  | **Warm Pad**     |  **0**  | **106** | **Shamisen**       |
+|   11    |         | Solar Wind       |  **0**  | **107** | **Koto**           |
+|   12    |         | Solar Wind 2     |    8    |         | Taisho Koto        |
+|  **0**  | **90**  | **Polysynth**    |  **0**  | **108** | **Kalimba**        |
+|  **0**  | **91**  | **Space Voice**  |  **0**  | **109** | **Bagpipes**       |
+|  **0**  | **92**  | **Bowed Glass**  |  **0**  | **110** | **Fiddle**         |
+|  **0**  | **93**  | **Metal Pad**    |  **0**  | **111** | **Shenai**         |
+|  **0**  | **94**  | **Halo Pad**     |  **0**  | **112** | **Tinker Bell**    |
+|  **0**  | **95**  | **Sweep Pad**    |  **0**  | **113** | **Agogo**          |
+|  **0**  | **96**  | **Ice Rain**     |  **0**  | **114** | **Steel Drums**    |
+|   11    |         | Mystery Pad      |  **0**  | **115** | **Wood Block**     |
+|  **0**  | **97**  | **Soundtrack**   |    8    |         | Castanets          |
+|  **0**  | **98**  | **Crystal**      |  **0**  | **116** | **Taiko Drum**     |
+|    1    |         | Synth Mallet     |    8    |         | Concert Bass Drum  |
+|   11    |         | Synth Chime      |  **0**  | **117** | **Melodic Tom**    |
+|  **0**  | **99**  | **Atmosphere**   |    8    |         | Melodic Tom 2      |
+|  **0**  | **100** | **Brightness**   |  **0**  | **118** | **Synth Drum**     |
+|   11    |         | Bright Saw Stack |    8    |         | 808 Tom            |
+|  **0**  | **101** | **Goblin**       |  **0**  | **119** | **Reverse Cymbal** |
+|  **0**  | **102** | **Echo Drops**   |   11    |         | Cymbal Crash       |
+|    2    |         | Echo Pan         |   12    |         | Tambourine         |
+|  **0**  | **103** | **Star Theme**   |  **0**  | **120** | **Fret Noise**     |
+|  **0**  | **104** | **Sitar**        |    1    |         | Cut Noise          |
+|  **0**  | **105** | **Banjo**        |    2    |         | String Slap        |
 
-| *Bank:*| *PC:*   | *Preset:*                | *Bank:*| *PC:*   | *Preset:*                |
-|:------:|:-------:|:------------------------ |:------:|:-------:|:------------------------ |
-| **0**  | **121** | **Breath Noise**         | **0**  | **125** | **Helicopter**           |
-| 1      |         | Fl. Key Click            | 1      |         | Car-Engine               |
-| 11     |         | Filter Snap              | 2      |         | Car-Stop                 |
-| **0**  | **122** | **Seashore**             | 3      |         | Car-Pass                 |
-| 1      |         | Rain                     | 4      |         | Car-Crash                |
-| 2      |         | Thunder                  | 5      |         | Siren                    |
-| 3      |         | Wind                     | 6      |         | Train                    |
-| 4      |         | Stream                   | 7      |         | Jet Plane                |
-| 5      |         | Bubbles                  | 8      |         | Starship                 |
-| 11     |         | Howling Winds            | 9      |         | Burst Noise              |
-| 12     |         | White Noise Wave         | **0**  | **126** | **Applause**             |
-| **0**  | **123** | **Birds**                | 1      |         | Laughing                 |
-| 1      |         | Dog                      | 2      |         | Scream                   |
-| 2      |         | Horse Gallop             | 3      |         | Punch                    |
-| 3      |         | Bird 2                   | 4      |         | Heart Beat               |
-| **0**  | **124** | **Telephone 1**          | 5      |         | Footsteps                |
-| 1      |         | Telephone 2              | **0**  | **127** | **Gun Shot**             |
-| 2      |         | Door Creaking            | 1      |         | Machine Gun              |
-| 3      |         | Door                     | 2      |         | Lasergun                 |
-| 4      |         | Scratch                  | 3      |         | Explosion                |
-| 5      |         | Windchime                | 11     |         | Interference             |
-|        |         |                          | 12     |         | Shooting Star            |
+| *Bank:* |  *PC:*  | *Preset:*        | *Bank:* |  *PC:*  | *Preset:*      |
+|:-------:|:-------:|:-----------------|:-------:|:-------:|:---------------|
+|  **0**  | **121** | **Breath Noise** |  **0**  | **125** | **Helicopter** |
+|    1    |         | Fl. Key Click    |    1    |         | Car-Engine     |
+|   11    |         | Filter Snap      |    2    |         | Car-Stop       |
+|  **0**  | **122** | **Seashore**     |    3    |         | Car-Pass       |
+|    1    |         | Rain             |    4    |         | Car-Crash      |
+|    2    |         | Thunder          |    5    |         | Siren          |
+|    3    |         | Wind             |    6    |         | Train          |
+|    4    |         | Stream           |    7    |         | Jet Plane      |
+|    5    |         | Bubbles          |    8    |         | Starship       |
+|   11    |         | Howling Winds    |    9    |         | Burst Noise    |
+|   12    |         | White Noise Wave |  **0**  | **126** | **Applause**   |
+|  **0**  | **123** | **Birds**        |    1    |         | Laughing       |
+|    1    |         | Dog              |    2    |         | Scream         |
+|    2    |         | Horse Gallop     |    3    |         | Punch          |
+|    3    |         | Bird 2           |    4    |         | Heart Beat     |
+|  **0**  | **124** | **Telephone 1**  |    5    |         | Footsteps      |
+|    1    |         | Telephone 2      |  **0**  | **127** | **Gun Shot**   |
+|    2    |         | Door Creaking    |    1    |         | Machine Gun    |
+|    3    |         | Door             |    2    |         | Lasergun       |
+|    4    |         | Scratch          |    3    |         | Explosion      |
+|    5    |         | Windchime        |   11    |         | Interference   |
+|         |         |                  |   12    |         | Shooting Star  |
 
 <div style="page-break-after: always"></div>
 
 ### 4.2. Percussion Presets
 
 | *Bank 120 or Ch.10:* |                    |                    |
-|:-------------------- | ------------------ | ------------------ |
+|:---------------------|--------------------|--------------------|
 | 0: Standard 1 Kit    | 16: Power Kit      | 32: Jazz Kit       |
 | 1: Standard 2 Kit    | 24: Electronic Kit | 40: Brush Kit      |
 | 2: Standard 3 Kit    | 25: 808/909 Kit    | 48: Orchestral Kit |
@@ -769,10 +806,10 @@ Inside the `support` folder that comes with GeneralUser GS, you will find the fo
   
   | Note value: | Note-on Velocity |
   |:-----------:|:----------------:|
-  | Quarter     | 127              |
-  | 8th         | 108              |
-  | 16th        | 82               |
-  | 32nd        | 46               |
+  |   Quarter   |       127        |
+  |     8th     |       108        |
+  |    16th     |        82        |
+  |    32nd     |        46        |
   
   The rhythm of the castanets should sound very even.
 
